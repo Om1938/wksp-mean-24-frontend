@@ -59,9 +59,11 @@ const Poll = () => {
           <Option key={option._id} option={option} />
         ))} */}
 
-        <Accordion activeIndex={0}>
+        <Accordion activeIndex={0} multiple>
           {poll?.data.options.map((vote) => (
-            <AccordionTab header={vote.text}>
+            <AccordionTab
+              header={`${vote.text} (${vote.voteCount || 0} votes)`}
+            >
               <h3>Voted By</h3>
               {poll?.data.votes
                 .filter((v) => v.optionId === vote._id)
