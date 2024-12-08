@@ -1,17 +1,10 @@
-import React from "react";
-import { useAppSelect } from "../../redux/store";
-import { useGreetQuery } from "../../redux/auth/api";
+import Polls from "../Polls";
 
-type Props = {};
-
-const Home = (props: Props) => {
-  const token = useAppSelect((state) => state.auth.token);
-  const { data } = useGreetQuery();
+const Home = () => {
   return (
-    <div>
-      Welcome to Home Page
-      {data && <div>{data.message}</div>}
-    </div>
+    <>
+      <Polls />;
+    </>
   );
 };
 

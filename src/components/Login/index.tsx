@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useLoginMutation } from "../../redux/auth/api";
 import { useNavigate } from "react-router-dom";
 import { useAppDispath } from "../../redux/store";
-import { setToken } from "../../redux/auth/slice";
+import { setProfile, setToken } from "../../redux/auth/slice";
 
 const LoginPage = () => {
   // Hook called useState
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("omkletu@gmail.com");
 
   const navigate = useNavigate();
   const dispatch = useAppDispath();
@@ -29,6 +29,7 @@ const LoginPage = () => {
       .unwrap()
       .then((res) => {
         dispatch(setToken(res.token));
+        dispatch(setProfile(res.result));
         navigate("/");
       });
   };

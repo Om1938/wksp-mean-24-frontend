@@ -1,8 +1,10 @@
-import React, { Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Suspense } from "react";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RegisterPage from "../components/RegisterPage";
 import LoginPage from "../components/Login";
 import Home from "../components/Home";
+import Poll from "../components/Poll";
+import Navbar from "../components/Navbar";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +17,22 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <>
+        <Navbar />
+        <Outlet />,
+      </>
+    ),
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "poll/:id",
+        element: <Poll />,
+      },
+    ],
   },
 
   {

@@ -13,7 +13,15 @@ const authAPI = api.injectEndpoints({
       }),
     }),
     login: build.mutation<
-      { message: string; token: string },
+      {
+        message: string;
+        token: string;
+        result: {
+          _id: string;
+          email: string;
+          username: string;
+        };
+      },
       { email: string; password: string }
     >({
       query: (body) => ({
